@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<table>
+   <th:block th:each="user : ${allUsers}">
+      <tr>
+         <td th:text="${user.id}">...</td>
+         <td th:text="${user.name}">...</td>
+         <td th:text="${user.userRole}">...</td>
+      </tr>
+   </th:block>
+</table>
+
+<form action="#" th:action="@{/add}" th:object="${user}" method="post" >
+	<h1 th:text="*{userRole}"></h1>
+   <select th:field="*{userRole}" >
+      <option th:each="each : ${UserRoles}"
+              th:text="${each.role}"
+              th:value="${each}">
+    </option>
+    </select>
+     <label for="id">Id (Optional)</label>
+     <input type="text" th:field="*{id}" name="id" />
+     <label for="name">Name</label>
+     <input type="text" th:field="*{name}" name="name" />
+   <button type="submit" name="addUser">Add user</button>
+</form>
+</body>
+</html>
